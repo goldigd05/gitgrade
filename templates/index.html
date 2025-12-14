@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitGrade</title>
+    <style>
+        body { font-family: Arial; background: #f4f6f8; }
+        .box { width: 500px; margin: 60px auto; background: white; padding: 20px; border-radius: 8px; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; }
+        button { background: #4CAF50; color: white; border: none; cursor: pointer; }
+        h2 { text-align: center; }
+        ul { padding-left: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>GitGrade Repository Analyzer</h2>
+
+    <form method="POST">
+        <input type="text" name="repo" placeholder="Enter GitHub Repository URL" required>
+        <button type="submit">Analyze Repository</button>
+    </form>
+
+    {% if result %}
+        <hr>
+        <h3>Score: {{ result.score }} / 100</h3>
+        <h4>Level: {{ result.grade }}</h4>
+
+        <p><b>Summary:</b> {{ result.summary }}</p>
+
+        <b>Personalized Roadmap:</b>
+        <ul>
+            {% for step in result.roadmap %}
+                <li>{{ step }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+</body>
+</html>
